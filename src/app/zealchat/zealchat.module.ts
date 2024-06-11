@@ -4,7 +4,7 @@ import { ZtestService } from './services/ztest/ztest.service';
 import { ZtestController } from './http/controllers/ztest/ztest.controller';
 
 @Module({
-    imports: [IdentityModule.forRoot("admin")],
+    imports: [IdentityModule.forRoot("test")],
     providers: [ZtestService],
     controllers: [ZtestController]
 })
