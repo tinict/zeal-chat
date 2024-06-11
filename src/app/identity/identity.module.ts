@@ -1,5 +1,5 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { TestService } from './services/test-service/test.service';
+import { TestService } from './services/test.service';
 
 @Module({
     controllers: [],
