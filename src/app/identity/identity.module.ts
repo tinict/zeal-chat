@@ -9,13 +9,12 @@ import { TestService } from './services/test-service/test.service';
 
 export class IdentityModule {
     static forRoot(context: string): DynamicModule {
-        if (context === 'admin') {
+        const providers = context === 'test';
+        if (providers)
             return {
                 module: IdentityModule,
-                providers: [TestService],
-                exports: [TestService],
-            }
-        }
-        else return;
+                providers: [{ provide: 'TestService', useClass: TestService }],
+                exports: [{ provide: 'TestService', useClass: TestService }],
+            };
     }
 };
