@@ -9,7 +9,7 @@ import { DatabaseModule } from './app/database/database.module';
   imports: [
     IdentityModule,
     ZealchatModule,
-    DatabaseModule
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

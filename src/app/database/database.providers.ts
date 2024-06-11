@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import { TypeORMLogger } from './exceptions';
 
 export const databaseProviders = [
     {
@@ -11,6 +12,7 @@ export const databaseProviders = [
                 username: 'root',
                 password: 'Tin18082002',
                 database: 'rec_test',
+                logger: new TypeORMLogger,
                 entities: [
                     __dirname + '/../**/*.entity{.ts,.js}',
                 ],
