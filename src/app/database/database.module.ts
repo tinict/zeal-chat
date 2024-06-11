@@ -1,8 +1,20 @@
 import { Module } from '@nestjs/common';
-import { databaseProviders } from './database.providers';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeORMLogger } from './exceptions';
 
 @Module({
-    providers: [...databaseProviders],
-    exports: [...databaseProviders]
+    imports: [
+        TypeOrmModule.forRoot({
+            type: 'mysql',
+            host: 'localhost',
+            port: 3306,
+            username: 'root',
+            password: 'Tin18082002',
+            database: 'rec_test',
+            entities: [],
+            logger: new TypeORMLogger,
+            synchronize: true,
+        }),
+    ],
 })
 export class DatabaseModule {};
