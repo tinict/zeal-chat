@@ -1,4 +1,4 @@
-export * from './accounts.entity';
+export * from './users.entity';
 export * from './profiles.entity';
 export * from './models.entity';
 export * from './credentials.entity';

@@ -5,7 +5,7 @@ import {
     OneToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { AccountEntity } from "./accounts.entity";
+import { UserEntity } from "./users.entity";
 import { CommonEntity } from 'src/entities';
 
 /**
@@ -41,7 +41,7 @@ export class CredentialEntity extends CommonEntity {
     })
     PasswordSalt: string;
 
-    @OneToOne(() => AccountEntity)
-    @JoinColumn({ name: 'account_id' })
-    Account: AccountEntity;
+    @OneToOne(() => UserEntity)
+    @JoinColumn({ name: 'user_id' })
+    User: UserEntity;
 };

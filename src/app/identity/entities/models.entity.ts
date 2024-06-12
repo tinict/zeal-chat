@@ -6,7 +6,7 @@ import {
     JoinColumn,
     OneToMany
 } from 'typeorm';
-import { AccountEntity } from './accounts.entity';
+import { UserEntity } from './users.entity';
 import { ModelPermissionEntity } from './model_permissions.entity';
 import { RoleModelEntity } from './role_models.entity';
 import { CommonEntity } from 'src/entities';
@@ -34,9 +34,9 @@ export class ModelEntity extends CommonEntity {
     })
     ModelType: string;
 
-    @OneToOne(() => AccountEntity)
-    @JoinColumn({ name: 'account_id' })
-    Account: AccountEntity;
+    @OneToOne(() => UserEntity)
+    @JoinColumn({ name: 'user_id' })
+    User: UserEntity;
 
     @OneToMany(() => RoleModelEntity, (RoleModel) => RoleModel.Model)
     RoleModels: RoleModelEntity[];

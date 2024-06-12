@@ -10,17 +10,17 @@ import { CredentialEntity } from './credentials.entity';
 import { CommonEntity } from 'src/entities';
 
 /**
- * Table: tbl_accounts
+ * Table: tbl_users
  */
-@Entity({ name: 'tbl_accounts' })
-export class AccountEntity extends CommonEntity {
+@Entity({ name: 'tbl_users' })
+export class UserEntity extends CommonEntity {
     /**
-     * account_id
+     * user_id
      */
     @PrimaryGeneratedColumn('uuid', {
-        name: 'account_id',
+        name: 'user_id',
     })
-    AccountId: string;
+    UserId: string;
 
     /**
      * username
@@ -32,12 +32,12 @@ export class AccountEntity extends CommonEntity {
     })
     UserName: string;
 
-    @OneToOne(() => ProfileEntity, (Profile) => Profile.Account)
+    @OneToOne(() => ProfileEntity, (Profile) => Profile.User)
     Profile: ProfileEntity;
 
-    @OneToOne(() => ModelEntity, (Model) => Model.Account)
+    @OneToOne(() => ModelEntity, (Model) => Model.User)
     Model: ModelEntity;
 
-    @OneToOne(() => CredentialEntity, (Credential) => Credential.Account)
+    @OneToOne(() => CredentialEntity, (Credential) => Credential.User)
     Credential: CredentialEntity;
 };
