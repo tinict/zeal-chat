@@ -5,7 +5,7 @@ import {
     OneToOne,
     JoinColumn
 } from 'typeorm';
-import { AccountEntity } from './accounts.entity';
+import { UserEntity } from './users.entity';
 import { Gender } from '../constants/enum';
 import { CommonEntity } from 'src/entities';
 
@@ -91,7 +91,7 @@ export class ProfileEntity extends CommonEntity {
     })
     dob: Date;
 
-    @OneToOne(() => AccountEntity)
-    @JoinColumn({ name: 'account_id' })
-    Account: AccountEntity;
+    @OneToOne(() => UserEntity)
+    @JoinColumn({ name: 'user_id' })
+    User: UserEntity;
 };
