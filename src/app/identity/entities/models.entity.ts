@@ -7,7 +7,8 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
 } from 'typeorm';
 import { AccountEntity } from './accounts.entity';
 import { ModelPermissionEntity } from './model_permissions.entity';
@@ -69,9 +70,9 @@ export class ModelEntity extends BaseEntity {
     @JoinColumn({ name: 'account_id' })
     Account: AccountEntity;
 
-    @ManyToOne(() => RoleModelEntity, (RoleModel) => RoleModel.Model)
+    @OneToMany(() => RoleModelEntity, (RoleModel) => RoleModel.Model)
     RoleModels: RoleModelEntity[];
 
-    @ManyToOne(() => ModelPermissionEntity, (ModelPermission) => ModelPermission.Model)
+    @OneToMany(() => ModelPermissionEntity, (ModelPermission) => ModelPermission.Model)
     ModelPermissions: ModelPermissionEntity[];
 };

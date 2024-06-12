@@ -6,6 +6,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
+    OneToMany,
 } from 'typeorm';
 import { ModelPermissionEntity } from './model_permissions.entity';
 import { RolePermissionEntity } from './role_permissions.entity';
@@ -48,9 +49,9 @@ export class PermissionEntity extends BaseEntity {
     })
     UpdatedAt: Date;
 
-    @ManyToOne(() => RolePermissionEntity, (RolePermission) => RolePermission.Permission)
+    @OneToMany(() => RolePermissionEntity, (RolePermission) => RolePermission.Permission)
     RolePermissions: RolePermissionEntity[];
 
-    @ManyToOne(() => ModelPermissionEntity, (ModelPermission) => ModelPermission.Permission)
+    @OneToMany(() => ModelPermissionEntity, (ModelPermission) => ModelPermission.Permission)
     ModelPermissions: ModelPermissionEntity[];
 };
