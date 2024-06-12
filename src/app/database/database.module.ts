@@ -11,11 +11,13 @@ import { TypeORMLogger } from './exceptions';
             port: 3306,
             username: 'root',
             password: 'Tin18082002',
-            database: 'rec_test',
-            entities: [],
+            database: 'db_dev',
+            entities: [__dirname + '../../**/*.entity{.ts,.js}'],
+            logging: true,
             logger: new TypeORMLogger,
             synchronize: true,
         }),
     ],
 })
-export class DatabaseModule {};
+
+export class DatabaseModule { };

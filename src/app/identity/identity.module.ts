@@ -1,7 +1,34 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { 
+    DynamicModule, 
+    Module 
+} from '@nestjs/common';
 import { TestService } from './services/test.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { 
+    AccountEntity, 
+    CredentialEntity, 
+    ModelEntity, 
+    ModelPermissionEntity, 
+    PermissionEntity, 
+    ProfileEntity, 
+    RoleEntity
+} from './entities';
+import { RolePermissionEntity } from './entities/role_permissions.entity';
 
 @Module({
+    imports: [
+        TypeOrmModule.forFeature([
+            AccountEntity,
+            ProfileEntity,
+            ModelEntity,
+            CredentialEntity,
+            PermissionEntity,
+            ModelPermissionEntity,
+            PermissionEntity,
+            RoleEntity,
+            RolePermissionEntity
+        ])
+    ],
     controllers: [],
     providers: [TestService],
     exports: [TestService]
