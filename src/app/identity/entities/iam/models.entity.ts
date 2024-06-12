@@ -10,6 +10,7 @@ import { UserEntity } from './users.entity';
 import { CommonEntity } from 'src/entities';
 import { RoleModelEntity } from './role_models.entity';
 import { ModelPermissionEntity } from './model_permissions.entity';
+import { ModelResourceEntity } from './access-control/model_resoures.entity';
 
 /**
  * Table: tbl_models
@@ -43,4 +44,13 @@ export class ModelEntity extends CommonEntity {
 
     @OneToMany(() => ModelPermissionEntity, (ModelPermission) => ModelPermission.Model)
     ModelPermissions: ModelPermissionEntity[];
+
+    @OneToMany(
+        () => ModelResourceEntity, 
+        (modelResourceEntity: ModelResourceEntity) => modelResourceEntity.Model,
+        {
+            nullable: true,
+        },
+    )
+    ModelResources: ModelResourceEntity[];
 };
