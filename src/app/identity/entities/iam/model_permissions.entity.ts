@@ -5,8 +5,8 @@ import {
     PrimaryGeneratedColumn, 
 } from "typeorm";
 import { PermissionEntity } from "./permissions.entity";
-import { ModelEntity } from "./iam/models.entity";
 import { CommonEntity } from 'src/entities';
+import { ModelEntity } from "./models.entity";
 
 /**
  * Table: tbl_model_permissions
