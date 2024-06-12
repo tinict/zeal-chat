@@ -5,7 +5,7 @@ import {
     PrimaryGeneratedColumn,
 } from "typeorm";
 import { RoleEntity } from "./roles.entity";
-import { PermissionEntity } from "./permissions.entity";
+import { PermissionEntity } from "./iam/permissions.entity";
 import { CommonEntity } from 'src/entities';
 
 /**

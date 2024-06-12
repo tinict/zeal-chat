@@ -7,9 +7,9 @@ import {
     OneToMany
 } from 'typeorm';
 import { UserEntity } from './users.entity';
-import { ModelPermissionEntity } from './model_permissions.entity';
-import { RoleModelEntity } from './role_models.entity';
 import { CommonEntity } from 'src/entities';
+import { RoleModelEntity } from './role_models.entity';
+import { ModelPermissionEntity } from './model_permissions.entity';
 
 /**
  * Table: tbl_models

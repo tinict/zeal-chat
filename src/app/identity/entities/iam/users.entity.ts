@@ -4,9 +4,9 @@ import {
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ProfileEntity } from './profiles.entity';
+import { ProfileEntity } from '../profiles.entity';
 import { ModelEntity } from './models.entity';
-import { CredentialEntity } from './credentials.entity';
+import { CredentialEntity } from '../credentials.entity';
 import { CommonEntity } from 'src/entities';
 
 /**

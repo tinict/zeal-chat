@@ -5,7 +5,7 @@ import {
     OneToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { UserEntity } from "./users.entity";
+import { UserEntity } from "./iam/users.entity";
 import { CommonEntity } from 'src/entities';
 
 /**
