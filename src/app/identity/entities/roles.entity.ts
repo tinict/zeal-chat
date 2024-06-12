@@ -4,6 +4,7 @@ import {
     Entity,
     ManyToMany,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
@@ -51,9 +52,9 @@ export class RoleEntity {
     })
     UpdatedAt: Date;
 
-    @ManyToOne(() => RoleModelEntity, (RoleModel) => RoleModel.Role)
+    @OneToMany(() => RoleModelEntity, (RoleModel) => RoleModel.Role)
     RoleModels: RoleModelEntity[];
 
-    @ManyToOne(() => RolePermissionEntity, (RolePermission) => RolePermission.Role)
+    @OneToMany(() => RolePermissionEntity, (RolePermission) => RolePermission.Role)
     RolePermissions: RolePermissionEntity[];
 };

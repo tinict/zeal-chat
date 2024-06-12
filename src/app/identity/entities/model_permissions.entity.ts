@@ -1,6 +1,8 @@
 import { 
     CreateDateColumn,
     Entity,
+    JoinColumn,
+    ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
@@ -39,9 +41,15 @@ export class ModelPermissionEntity {
     })
     UpdatedAt: Date;
 
-    @OneToMany(() => ModelEntity, (Model) => Model.ModelPermissions)
+    @ManyToOne(() => ModelEntity)
+    @JoinColumn({
+        name: 'model_id',
+    })
     Model: ModelEntity;
 
-    @OneToMany(() => PermissionEntity, (Permission) => Permission.ModelPermissions)
+    @ManyToOne(() => PermissionEntity)
+    @JoinColumn({
+        name: 'permission_id',
+    })
     Permission: PermissionEntity;
 };
