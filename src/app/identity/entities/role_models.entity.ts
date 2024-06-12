@@ -1,20 +1,18 @@
 import { 
-    CreateDateColumn,
     Entity, 
     JoinColumn, 
-    ManyToOne, 
-    OneToMany, 
+    ManyToOne,  
     PrimaryGeneratedColumn, 
-    UpdateDateColumn
 } from "typeorm";
 import { RoleEntity } from "./roles.entity";
 import { ModelEntity } from "./models.entity";
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_role_models
  */
 @Entity({name: 'tbl_role_models'})
-export class RoleModelEntity {
+export class RoleModelEntity extends CommonEntity {
     /**
      * role_model_id
      */
@@ -22,24 +20,6 @@ export class RoleModelEntity {
         name: 'role_model_id',
     })
     RoleModelId: string;
-
-    /**
-     * created_at
-     */
-    @CreateDateColumn({ 
-        name: 'created_at',
-        type: 'timestamp',
-    })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        name: 'updated_at',
-        type: 'timestamp',
-    })
-    UpdatedAt: Date;
 
     @ManyToOne(() => RoleEntity)
     @JoinColumn({

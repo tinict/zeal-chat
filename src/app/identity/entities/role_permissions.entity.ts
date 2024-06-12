@@ -1,20 +1,18 @@
 import { 
-    CreateDateColumn,
     Entity, 
     JoinColumn, 
     ManyToOne, 
-    OneToMany, 
     PrimaryGeneratedColumn,
-    UpdateDateColumn
 } from "typeorm";
 import { RoleEntity } from "./roles.entity";
 import { PermissionEntity } from "./permissions.entity";
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_role_permissions
  */
 @Entity({name: 'tbl_role_permissions'})
-export class RolePermissionEntity {
+export class RolePermissionEntity extends CommonEntity {
     /**
      * role_permission_id
      */
@@ -22,24 +20,6 @@ export class RolePermissionEntity {
         name: 'role_permission_id',
     })
     role_permission_id: string;
-
-    /**
-     * created_at
-     */
-    @CreateDateColumn({ 
-        name: 'created_at',
-        type: 'timestamp',
-    })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        name: 'updated_at',
-        type: 'timestamp',
-    })
-    UpdatedAt: Date;
 
     @ManyToOne(() => RoleEntity)
     @JoinColumn({
