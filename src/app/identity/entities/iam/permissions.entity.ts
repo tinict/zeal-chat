@@ -4,9 +4,9 @@ import {
     PrimaryGeneratedColumn,
     OneToMany,
 } from 'typeorm';
+import { CommonEntity } from 'src/entities';
 import { ModelPermissionEntity } from './model_permissions.entity';
 import { RolePermissionEntity } from './role_permissions.entity';
-import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_permissions

@@ -5,7 +5,7 @@ import {
     OneToOne,
     JoinColumn
 } from 'typeorm';
-import { UserEntity } from './users.entity';
+import { UserEntity } from './iam/users.entity';
 import { Gender } from '../constants/enum';
 import { CommonEntity } from 'src/entities';
 
