@@ -1,20 +1,18 @@
 import {
-    BaseEntity,
     Column,
-    CreateDateColumn,
     Entity,
     JoinColumn,
     OneToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
 } from "typeorm";
 import { AccountEntity } from "./accounts.entity";
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_credentials
  */
 @Entity({ name: "tbl_credentials" })
-export class CredentialEntity extends BaseEntity {
+export class CredentialEntity extends CommonEntity {
     /**
      * credential_id
      */
@@ -42,24 +40,6 @@ export class CredentialEntity extends BaseEntity {
         length: 250,
     })
     PasswordSalt: string;
-
-    /**
-     * created_at
-     */
-    @CreateDateColumn({ 
-        name: 'created_at',
-        type: 'timestamp',
-    })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        name: 'updated_at',
-        type: 'timestamp',
-    })
-    UpdatedAt: Date;
 
     @OneToOne(() => AccountEntity)
     @JoinColumn({ name: 'account_id' })

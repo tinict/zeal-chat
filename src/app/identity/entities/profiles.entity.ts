@@ -3,19 +3,17 @@ import {
     Column,
     PrimaryGeneratedColumn,
     OneToOne,
-    BaseEntity,
-    CreateDateColumn,
-    UpdateDateColumn,
     JoinColumn
 } from 'typeorm';
 import { AccountEntity } from './accounts.entity';
 import { Gender } from '../constants/enum';
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_profiles
  */
 @Entity({ name: 'tbl_profiles' })
-export class ProfileEntity extends BaseEntity {
+export class ProfileEntity extends CommonEntity {
     /**
      * profile_id
      */
@@ -85,22 +83,13 @@ export class ProfileEntity extends BaseEntity {
     Gender: Gender;
 
     /**
-     * created_at
+     * Date Of Birth
      */
-    @CreateDateColumn({ 
-        name: 'created_at',
-        type: 'timestamp',
+    @Column({
+        name: 'dob',
+        type: 'datetime',
     })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        name: 'updated_at',
-        type: 'timestamp',
-    })
-    UpdatedAt: Date;
+    dob: Date;
 
     @OneToOne(() => AccountEntity)
     @JoinColumn({ name: 'account_id' })

@@ -3,23 +3,19 @@ import {
     Column,
     PrimaryGeneratedColumn,
     OneToOne,
-    BaseEntity,
-    CreateDateColumn,
-    UpdateDateColumn,
-    ManyToOne,
     JoinColumn,
     OneToMany
 } from 'typeorm';
 import { AccountEntity } from './accounts.entity';
 import { ModelPermissionEntity } from './model_permissions.entity';
 import { RoleModelEntity } from './role_models.entity';
-import { StatusEntity } from '../constants/enum';
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_models
  */
 @Entity({ name: 'tbl_models' })
-export class ModelEntity extends BaseEntity {
+export class ModelEntity extends CommonEntity {
     /**
      * model_id
      */
@@ -37,34 +33,6 @@ export class ModelEntity extends BaseEntity {
         length: 200,
     })
     ModelType: string;
-
-    /**
-     * status
-     */
-    @Column({
-        name: 'status',
-        type: 'enum',
-        enum: StatusEntity,
-    })
-    status: StatusEntity;
-
-    /**
-     * created_at
-     */
-    @CreateDateColumn({ 
-        name: 'created_at',
-        type: 'timestamp',
-    })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        name: 'updated_at',
-        type: 'timestamp',
-    })
-    UpdatedAt: Date;
 
     @OneToOne(() => AccountEntity)
     @JoinColumn({ name: 'account_id' })

@@ -1,22 +1,19 @@
 import {
-    BaseEntity,
     Column,
-    CreateDateColumn,
     Entity,
     OneToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
 } from 'typeorm';
 import { ProfileEntity } from './profiles.entity';
 import { ModelEntity } from './models.entity';
 import { CredentialEntity } from './credentials.entity';
-import { StatusEntity } from '../constants/enum';
+import { CommonEntity } from 'src/entities';
 
 /**
  * Table: tbl_accounts
  */
 @Entity({ name: 'tbl_accounts' })
-export class AccountEntity extends BaseEntity {
+export class AccountEntity extends CommonEntity {
     /**
      * account_id
      */
@@ -34,34 +31,6 @@ export class AccountEntity extends BaseEntity {
         name: 'username',
     })
     UserName: string;
-
-    /**
-     * created_at
-     */
-    @CreateDateColumn({ 
-        type: 'timestamp',
-        name: 'created_at',
-    })
-    CreatedAt: Date;
-
-    /**
-     * updated_at
-     */
-    @UpdateDateColumn({ 
-        type: 'timestamp',
-        name: 'update_at',
-    })
-    UpdatedAt: Date;
-
-    /**
-     * status
-     */
-    @Column({
-        type: 'enum',
-        enum: StatusEntity,
-        name: 'status',
-    })
-    Status: StatusEntity;
 
     @OneToOne(() => ProfileEntity, (Profile) => Profile.Account)
     Profile: ProfileEntity;
