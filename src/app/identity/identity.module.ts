@@ -5,20 +5,20 @@ import {
 import { TestService } from './services/test.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { 
-    AccountEntity, 
+    UserEntity, 
     CredentialEntity, 
     ModelEntity, 
     ModelPermissionEntity, 
     PermissionEntity, 
     ProfileEntity, 
-    RoleEntity
+    RoleEntity,
+    RolePermissionEntity
 } from './entities';
-import { RolePermissionEntity } from './entities/role_permissions.entity';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([
-            AccountEntity,
+            UserEntity,
             ProfileEntity,
             ModelEntity,
             CredentialEntity,
