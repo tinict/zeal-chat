@@ -14,6 +14,9 @@ import {
     RoleEntity,
     RolePermissionEntity
 } from './entities';
+import { 
+    UserService 
+} from './services';
 
 @Module({
     imports: [
@@ -30,7 +33,10 @@ import {
         ])
     ],
     controllers: [],
-    providers: [TestService],
+    providers: [
+        TestService,
+        UserService,
+    ],
     exports: [TestService]
 })
 
