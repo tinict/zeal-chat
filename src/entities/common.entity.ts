@@ -4,20 +4,20 @@ import {
     Column,
     CreateDateColumn,
     DeleteDateColumn,
-    PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
 
 /**
  * Base system Entity
- * - description,
- * - rec_status,
- * - created_by,
+ * - description
+ * - rec_status
+ * - created_by
  * - deleted_by
  * - deleted_at
- * - created_at,
- * - updated_by,
+ * - created_at
+ * - updated_by
  * - updated_at
+ * - display_order
  */
 export abstract class CommonEntity extends BaseEntity {
     /**
@@ -102,4 +102,14 @@ export abstract class CommonEntity extends BaseEntity {
         nullable: true,
     })
     public DeletedAt: Date;
+
+    /**
+     * Display Order
+     */
+    @Column({
+        name: 'display_order', 
+        type: 'decimal', 
+        nullable: true, 
+    })
+    public DisplayOrder: number;
 };
