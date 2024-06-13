@@ -8,8 +8,16 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
+  /**
+   * Helmet: Protect HTTP and prevent actack XSS and CSRF
+   */
   app.use(helmet());
-  
+
+  /**
+   * CORS: Cross Origin Resource Sharing
+   */
+  app.enableCors();
+
   await app.listen(3000);
 }
 bootstrap();
