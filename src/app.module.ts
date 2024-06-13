@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IdentityModule } from './app/identity/identity.module';
-import { ZealchatModule } from './app/zealchat/zealchat.module';
-import { DatabaseModule } from './app/database/database.module';
+import {
+  DatabaseModule,
+  IdentityModule,
+  ZealchatModule
+} from './app';
 
 @Module({
   imports: [
@@ -14,4 +16,4 @@ import { DatabaseModule } from './app/database/database.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

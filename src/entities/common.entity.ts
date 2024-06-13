@@ -1,4 +1,6 @@
-import { RecStatus } from "src/constants/enum";
+import { 
+    RecStatus 
+} from "src/constants";
 import {
     BaseEntity,
     Column,
