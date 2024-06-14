@@ -1,41 +1,38 @@
-import { InjectRepository } from "@nestjs/typeorm";
-import { CommonEntity } from "src/entities";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from 'typeorm';
+import { BaseServiceInterface } from '../interfaces';
+import { EntityId } from 'typeorm/repository/EntityId';
 
-export abstract class BaseService {
-    // constructor(
-    //     @InjectRepository(CommonEntity)
-    //     commonRepository: Repository<CommonEntity>
-    // ) {};
+export class BaseService<T> implements BaseServiceInterface<T> {
+    protected readonly repository: Repository<T>;
 
-    /**
-     * action: Create record
-     */
-    create = async () => {
-        return {
-            a: "hello"
-        }
-    };
+    constructor(repository: Repository<T>) {
+        this.repository = repository;
+    }
 
-    
-    /**
-     * action: Get all
-     */
-    getAll = async () => {
+    async index(): Promise<T[]> {
+        return await this.repository.find();
+    }
 
-    };
+    async findById(id: EntityId): Promise<T | undefined> {
+        const entity = await this.repository.findOne(id as any);
+        return entity;
+    }
 
-    /**
-     * action: Delete
-     */
-    delete = async () => {
+    async findByIds(ids: EntityId[]): Promise<T[]> {
+        return await this.repository.findByIds(ids);
+    }
 
-    };
+    async store(data: any): Promise<T> {
+        const entity = await this.repository.save(data);
+        return entity;
+    }
 
-    /**
-     * action: Update
-     */
-    update = async () => {
+    async update(id: EntityId, data: any): Promise<T | undefined> {
+        await this.repository.update(id, data);
+        return this.findById(id);
+    }
 
-    };
-};
+    async delete(id: EntityId): Promise<DeleteResult> {
+        return await this.repository.delete(id);
+    }
+}
