@@ -15,8 +15,11 @@ import {
     RolePermissionEntity
 } from './entities';
 import { 
+    ProfileService,
     UserService 
 } from './services';
+import { UserController } from './http';
+import { ProfileController } from './http/controllers/profile.controller';
 
 @Module({
     imports: [
@@ -32,10 +35,14 @@ import {
             RolePermissionEntity
         ])
     ],
-    controllers: [],
+    controllers: [
+        ProfileController,
+        UserController
+    ],
     providers: [
         TestService,
         UserService,
+        ProfileService
     ],
     exports: [TestService]
 })

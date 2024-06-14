@@ -1,5 +1,5 @@
-import { 
-    RecStatus 
+import {
+    RecStatus
 } from "src/constants";
 import {
     BaseEntity,
@@ -20,15 +20,16 @@ import {
  * - updated_by
  * - updated_at
  * - display_order
+ * - code
  */
 export abstract class CommonEntity extends BaseEntity {
     /**
      * Created By
      */
-    @Column({ 
-        name: 'description', 
-        type: 'longtext', 
-        nullable: true 
+    @Column({
+        name: 'description',
+        type: 'longtext',
+        nullable: true
     })
     public Description: string;
 
@@ -41,7 +42,7 @@ export abstract class CommonEntity extends BaseEntity {
         length: 64,
         nullable: true
     })
-    public CreatedBy: string
+    public created_by: string
 
     /**
      * Deleted By
@@ -52,7 +53,7 @@ export abstract class CommonEntity extends BaseEntity {
         length: 64,
         nullable: true
     })
-    public DeletedBy: string;
+    public deleted_by: string;
 
     /**
      * Updated By
@@ -63,7 +64,7 @@ export abstract class CommonEntity extends BaseEntity {
         length: 64,
         nullable: true
     })
-    public UpdatedBy: string;
+    public updated_by: string;
 
     /**
      * Created At
@@ -72,7 +73,7 @@ export abstract class CommonEntity extends BaseEntity {
         name: 'created_at',
         type: 'timestamp',
     })
-    public CreatedAt: Date;
+    public created_at: Date;
 
     /**
      * Updated At
@@ -82,7 +83,7 @@ export abstract class CommonEntity extends BaseEntity {
         type: 'timestamp',
         nullable: true,
     })
-    public UpdatedAt: Date;
+    public updated_at: Date;
 
     /**
      * Record Status
@@ -93,7 +94,7 @@ export abstract class CommonEntity extends BaseEntity {
         name: 'rec_status',
         default: RecStatus.ACTIVE,
     })
-    public RecStatus: RecStatus;
+    public rec_status: RecStatus;
 
     /**
      * Deleted At
@@ -103,15 +104,26 @@ export abstract class CommonEntity extends BaseEntity {
         type: 'timestamp',
         nullable: true,
     })
-    public DeletedAt: Date;
+    public deleted_at: Date;
 
     /**
      * Display Order
      */
     @Column({
-        name: 'display_order', 
-        type: 'decimal', 
-        nullable: true, 
+        name: 'display_order',
+        type: 'decimal',
+        nullable: true,
     })
-    public DisplayOrder: number;
+    public display_order: number;
+
+    /**
+     * Code
+     */
+    @Column({ 
+        name: 'code', 
+        type: 'char', 
+        length: 64, 
+        nullable: true 
+    })
+    public code: string;
 };

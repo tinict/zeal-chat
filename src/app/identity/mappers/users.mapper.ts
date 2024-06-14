@@ -4,5 +4,6 @@ import { BaseMapper } from 'src/mappers';
 export class UserMapper extends BaseMapper {
     static toUserMapper = (entity: any) => ({
         ...BaseMapper.toBaseMapper(entity),
+        username: _.get(entity, 'username'),
     });
 };

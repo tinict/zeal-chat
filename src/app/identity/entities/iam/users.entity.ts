@@ -23,7 +23,7 @@ export class UserEntity extends CommonEntity {
     @PrimaryGeneratedColumn('uuid', {
         name: 'user_id',
     })
-    UserId: string;
+    user_id: string;
 
     /**
      * username
@@ -32,8 +32,9 @@ export class UserEntity extends CommonEntity {
         type: 'varchar',
         length: 32,
         name: 'username',
+        unique: true,
     })
-    UserName: string;
+    username: string;
 
     @OneToOne(() => ProfileEntity, (Profile) => Profile.User)
     Profile: ProfileEntity;

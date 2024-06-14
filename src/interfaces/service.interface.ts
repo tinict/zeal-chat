@@ -27,7 +27,7 @@ export interface BaseServiceInterface<T> {
      * @param data any
      * @returns Promise<T>
      */
-    store(data: any): Promise<T>;
+    create(data: any, EntityClass: any): Promise<T>;
 
     /**
      * Cập nhật một thực thể theo ID

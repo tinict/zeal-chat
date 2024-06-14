@@ -20,7 +20,7 @@ export class ProfileEntity extends CommonEntity {
     @PrimaryGeneratedColumn('uuid', {
         name: 'profile_id',
     })
-    ProfileId: string;
+    profile_id: string;
 
     /**
      * family_name
@@ -30,7 +30,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'nvarchar',
         length: 35,
     })
-    FamilyName: string;
+    family_name: string;
 
     /**
      * name
@@ -40,7 +40,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'nvarchar',
         length: 50,
     })
-    Name: string;
+    name: string;
 
     /**
      * email
@@ -50,7 +50,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'varchar',
         length: 320,
     })
-    Email: string;
+    email: string;
 
     /**
      * phone
@@ -60,7 +60,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'varchar',
         length: 15,
     })
-    Phone: string;
+    phone: string;
 
     /**
      * url_picture
@@ -70,7 +70,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'varchar',
         length: 320,
     })
-    UrlPicture: string;
+    url_picture: string;
 
     /**
      * gender
@@ -80,7 +80,7 @@ export class ProfileEntity extends CommonEntity {
         type: 'enum',
         enum: Gender,
     })
-    Gender: Gender;
+    gender: Gender;
 
     /**
      * Date Of Birth

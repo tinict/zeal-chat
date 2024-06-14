@@ -71,7 +71,7 @@ export class ExceptionFilterHelper {
         });
     };
 
-    public static throwHttpException = (problem: ExceptionFilterHelper) => {
+    public static HttpException = (problem: ExceptionFilterHelper) => {
         throw new HttpException(
             { message: problem.message, code: problem.code },
             problem.status,
