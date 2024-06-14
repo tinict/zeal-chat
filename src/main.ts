@@ -54,5 +54,10 @@ async function bootstrap() {
   Logger.log(
     `🚀 Application is running on: http://localhost:${PORT}/${globalPrefix}`,
   );
+
+  Logger.log(
+    `🚀 Docs API: http://localhost:${PORT}/docs`,
+  );
 }
+
 bootstrap();
