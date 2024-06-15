@@ -4,27 +4,29 @@ import { EntityId } from 'typeorm/repository/EntityId';
 import { BaseMapper } from 'src/mappers';
 import { ExceptionFilterHelper } from 'src/helpers';
 
-
+/**
+ * BaseService
+ */
 export class BaseService<T> implements BaseServiceInterface<T> {
     protected readonly repository: Repository<T>;
 
+    /**
+     * Contructor
+     * @param repository 
+     */
     constructor(repository: Repository<T>) {
         this.repository = repository;
     };
 
-    async getAll(): Promise<T[]> {
-        return await this.repository.find();
-    };
-
     /**
-     * 
+     * Find one
      * @param id 
      * @param query 
      * @returns 
      */
-    async findOne(query: any): Promise<T | undefined> {
+    async find(query: any): Promise<T[] | T | undefined> {
         try {
-            const entity = await this.repository.findOne({
+            const entity = await this.repository.find({
                 where: {
                     ...query
                 } as any
@@ -33,10 +35,6 @@ export class BaseService<T> implements BaseServiceInterface<T> {
         } catch (error: any) {
             return ExceptionFilterHelper.HttpException(error);
         }
-    };
-
-    async findAllByIds(ids: EntityId[]): Promise<T[]> {
-        return await this.repository.findByIds(ids);
     };
 
     /**
@@ -56,7 +54,7 @@ export class BaseService<T> implements BaseServiceInterface<T> {
     };
 
     /**
-     * Base Update
+     * Update
      * @param id 
      * @param data 
      * @returns 
@@ -79,7 +77,7 @@ export class BaseService<T> implements BaseServiceInterface<T> {
     };
 
     /**
-     * Base Delete
+     * Delete
      * @param id 
      * @returns 
      */

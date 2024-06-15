@@ -3,34 +3,21 @@ import { DeleteResult } from 'typeorm';
 
 export interface BaseServiceInterface<T> {
     /**
-     * Lấy danh sách tất cả các thực thể
+     * Find many entity by query
+     * @param query any
      * @returns Promise<T[]>
      */
-    getAll(): Promise<T[]>;
+    find(query: any): Promise<T[] | T>;
 
     /**
-     * Tìm một thực thể theo ID
-     * @param id EntityId
-     * @returns Promise<T>
-     */
-    findOne(query: any): Promise<T>;
-
-    /**
-     * Tìm nhiều thực thể theo danh sách ID
-     * @param ids EntityId[]
-     * @returns Promise<T[]>
-     */
-    findAllByIds(ids: EntityId[]): Promise<T[]>;
-
-    /**
-     * Tạo mới một thực thể
+     * Create entity
      * @param data any
      * @returns Promise<T>
      */
     create(data: any, EntityClass: any): Promise<T>;
 
     /**
-     * Cập nhật một thực thể theo ID
+     * Update entity by id
      * @param id EntityId
      * @param data any
      * @returns Promise<T>
@@ -38,7 +25,7 @@ export interface BaseServiceInterface<T> {
     update(id: EntityId, data: any): Promise<T>;
 
     /**
-     * Xóa một thực thể theo ID
+     * Delete entity by id
      * @param id EntityId
      * @returns Promise<DeleteResult>
      */

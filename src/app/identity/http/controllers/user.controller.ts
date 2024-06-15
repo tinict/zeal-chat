@@ -93,7 +93,7 @@ export class UserController {
     };
 
     @Get()
-    async findUser (
+    async findUsers (
         @Query()
         queryUserDTO: UserQueryDTO,
         @Req()
@@ -102,7 +102,7 @@ export class UserController {
         res: Response,
     ) {
         try {
-            const user = await this.userService.findOne(queryUserDTO);
+            const user = await this.userService.find(queryUserDTO);
             return res.status(200).json(user);
         } catch (error: any) {
             console.error();
