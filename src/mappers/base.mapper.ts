@@ -1,6 +1,4 @@
 import * as _ from 'lodash';
-import { pick } from 'lodash';
-import { BaseEntity } from 'typeorm';
 
 export class BaseMapper {
     static toBaseMapper = (entity: any) => ({
@@ -16,14 +14,22 @@ export class BaseMapper {
     static async toEntity<T>(data: any, EntityClass: new () => T): Promise<T> {
         const entity = new EntityClass();
 
-        // Type assertion to `any` is necessary to assign dynamic properties
         Object.keys(data).forEach(key => {
             if (data[key] !== undefined) {
                 (entity as any)[key] = data[key];
             }
         });
 
-        console.log('Mapped entity:', entity);
         return entity;
-    }
+    };
+
+    static async toUpdateEntity<T>(data: any, entity: T): Promise<T> {
+        Object.keys(data).forEach(key => {
+            if (data[key] !== undefined) {
+                (entity as any)[key] = data[key];
+            }
+        });
+
+        return entity;
+    };
 };

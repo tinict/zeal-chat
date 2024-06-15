@@ -6,5 +6,5 @@ export enum Gender {
 
 export enum StatusEntity {
     active = 1,
-    lock = 2
+    lock = 2,
 };
