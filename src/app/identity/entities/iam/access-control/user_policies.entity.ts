@@ -28,7 +28,7 @@ export class UserPolicyEntity extends CommonEntity {
     })
     Policy: PolicyEntity;
 
-    @ManyToOne(() => UserEntity)
+    @ManyToOne(() => UserEntity)  
     @JoinColumn({
         name: 'user_id',
     })
