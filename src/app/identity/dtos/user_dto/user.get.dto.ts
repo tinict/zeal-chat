@@ -1,0 +1,6 @@
+/**
+ * Get
+ */
+export class UserGetDTO {
+
+};

@@ -23,7 +23,7 @@ export class UserEntity extends CommonEntity {
     @PrimaryGeneratedColumn('uuid', {
         name: 'user_id',
     })
-    user_id: string;
+    id: string;
 
     /**
      * username

@@ -1,0 +1,6 @@
+/**
+ * Bulk
+ */
+export class UserBulkDTO {
+
+};

@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { BaseCreateDTO } from "src/dtos";
 
+/**
+ * Create
+ */
 export class UserCreateDTO extends BaseCreateDTO {
     /**
      * Username
