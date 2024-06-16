@@ -8,4 +8,9 @@ export class UserQueryDTO {
         name: 'id',
     })
     id: string;
+
+    @ApiProperty({
+        name: 'username',
+    })
+    username: string;
 };

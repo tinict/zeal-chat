@@ -30,4 +30,4 @@ export interface BaseServiceInterface<T> {
      * @returns Promise<DeleteResult>
      */
     delete(id: EntityId): Promise<DeleteResult>;
-}
+};

@@ -17,11 +17,9 @@ import {
     ApiTags,
 } from "@nestjs/swagger";
 import { 
-    ProfileCreateDTO 
-} from "../../dtos";
-import { 
     ProfileEntity 
 } from "../../entities";
+import { ProfileCreateDTO } from "../../dtos/profile_dto";
 
 @ApiTags('Profile')
 @ApiBearerAuth()
