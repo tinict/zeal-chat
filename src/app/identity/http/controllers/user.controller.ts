@@ -9,6 +9,7 @@ import {
     Query,
     Req,
     Res,
+    UsePipes,
 } from "@nestjs/common";
 import {
     Request,
@@ -21,13 +22,23 @@ import {
     ApiBearerAuth,
     ApiTags,
 } from "@nestjs/swagger";
-import {
-    UserCreateDTO,
-    UserUpdateDTO
-} from "../../dtos";
 import { UserEntity } from "../../entities";
-import { UserDeleteDTO } from "../../dtos/user_dto/user.delete.dto";
-import { UserQueryDTO } from "../../dtos/user_dto/user.query.dto";
+import { JoiValidationPipe } from "src/pipes";
+import {
+    UserCreateSchema,
+    UserDeleteSchema,
+    UserQuerySchema,
+    UserUpdateSchema
+} from "../../schemas";
+import { UserMapper } from "../../mappers";
+import _ from "lodash";
+import { ExceptionFilterHelper } from "src/helpers";
+import { 
+    UserCreateDTO,
+    UserDeleteDTO, 
+    UserQueryDTO, 
+    UserUpdateDTO
+} from "../../dtos/user_dto";
 
 @ApiTags('Identity')
 @ApiBearerAuth()
@@ -37,7 +48,15 @@ export class UserController {
         private userService: UserService,
     ) { };
 
+    /**
+     * 
+     * @param createUserDTO 
+     * @param req 
+     * @param res 
+     * @returns 
+     */
     @Post()
+    @UsePipes(new JoiValidationPipe(UserCreateSchema))
     async createUser(
         @Body()
         createUserDTO: UserCreateDTO,
@@ -47,15 +66,29 @@ export class UserController {
         res: Response,
     ) {
         try {
-            const user = await this.userService.create(createUserDTO, UserEntity);
+            const { credentials } = req.body;
+
+            const userCreateDTOFilter: UserCreateDTO = UserMapper.toUserCreateDTOMapper({
+                ...createUserDTO,
+                credentials
+            });
+            const user = await this.userService.create(userCreateDTOFilter, UserEntity);
+
             return res.status(200).json({ user });
         } catch (error: any) {
-            console.error();
-            return res.send(error);
+            return res.json(ExceptionFilterHelper.HttpException(error));
         }
-    };  
+    };
 
+    /**
+     * 
+     * @param updateUserDTO 
+     * @param req 
+     * @param res 
+     * @returns 
+     */
     @Put(':id')
+    @UsePipes(new JoiValidationPipe(UserUpdateSchema))
     async updateUser(
         @Body()
         updateUserDTO: UserUpdateDTO,
@@ -65,17 +98,31 @@ export class UserController {
         res: Response,
     ) {
         try {
-            console.table(updateUserDTO);
-            const user = await this.userService.update(updateUserDTO.id, updateUserDTO);
-            return res.status(200).json(user);
+            const { id, credentials } = req.body;
+
+            const updateUserDTOFilter: UserCreateDTO = UserMapper.toUserCreateDTOMapper({
+                ...updateUserDTO,
+                credentials
+            });
+            await this.userService.update(id, updateUserDTOFilter);
+
+            return res.json(ExceptionFilterHelper.Ok());
         } catch (error: any) {
             console.error();
-            return res.send(error);
+            return res.json(ExceptionFilterHelper.HttpException(error));
         }
     };
 
+    /**
+     * 
+     * @param deleteUserDTO 
+     * @param req 
+     * @param res 
+     * @returns 
+     */
     @Delete(':id')
-    async deleteUser (
+    @UsePipes(new JoiValidationPipe(UserDeleteSchema))
+    async deleteUser(
         @Param()
         deleteUserDTO: UserDeleteDTO,
         @Req()
@@ -84,16 +131,31 @@ export class UserController {
         res: Response,
     ) {
         try {
-            await this.userService.delete(deleteUserDTO.id);
-            return res.status(200).send('Sucess');
+            const { credentials } = req.body;
+
+            const deleteUserDTOFilter: UserDeleteDTO = UserMapper.toUserDeleteDTOMapper({
+                ...deleteUserDTO,
+                credentials
+            });
+
+            await this.userService.delete(deleteUserDTOFilter.id);
+
+            return res.json(ExceptionFilterHelper.Ok());
         } catch (error: any) {
-            console.error();
-            return res.send(error);
+            return ExceptionFilterHelper.HttpException(error);
         }
     };
 
+    /**
+     * 
+     * @param queryUserDTO 
+     * @param req 
+     * @param res 
+     * @returns 
+     */
     @Get()
-    async findUsers (
+    @UsePipes(new JoiValidationPipe(UserQuerySchema))
+    async findUsers(
         @Query()
         queryUserDTO: UserQueryDTO,
         @Req()
@@ -102,11 +164,20 @@ export class UserController {
         res: Response,
     ) {
         try {
-            const user = await this.userService.find(queryUserDTO);
-            return res.status(200).json(user);
+            const { credentials } = req.body;
+
+            const queryUserDTOFilter: Partial<UserQueryDTO> = UserMapper.toUserQueryDTOMapper({
+                ...queryUserDTO,
+                credentials
+            });
+            console.log(queryUserDTOFilter);
+            const users = await this.userService.find({
+                ...queryUserDTOFilter
+            });
+
+            return res.status(200).json(users);
         } catch (error: any) {
-            console.error();
-            return res.send(error);
+            return ExceptionFilterHelper.HttpException(error);
         }
     };
 };

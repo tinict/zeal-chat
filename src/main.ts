@@ -2,10 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as csurf from 'csurf';
-import { Logger } from '@nestjs/common';
+import { 
+  Logger, 
+  ValidationPipe 
+} from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as cookieParser from 'cookie-parser';
+import { 
+  DocumentBuilder, 
+  SwaggerModule 
+} from '@nestjs/swagger';
 import * as compression from 'compression';
 
 async function bootstrap() {
