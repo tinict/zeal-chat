@@ -31,7 +31,7 @@ export abstract class CommonEntity extends BaseEntity {
         type: 'longtext',
         nullable: true
     })
-    public Description: string;
+    public description: string;
 
     /**
      * Created By
@@ -42,7 +42,18 @@ export abstract class CommonEntity extends BaseEntity {
         length: 64,
         nullable: true
     })
-    public created_by: string
+    public created_by: string;
+
+    
+    /**
+     * Created At
+     */
+    @CreateDateColumn({
+        name: 'created_at',
+        type: 'timestamp',
+        nullable: true,
+    })
+    public created_at: Date;
 
     /**
      * Deleted By
@@ -65,15 +76,6 @@ export abstract class CommonEntity extends BaseEntity {
         nullable: true
     })
     public updated_by: string;
-
-    /**
-     * Created At
-     */
-    @CreateDateColumn({
-        name: 'created_at',
-        type: 'timestamp',
-    })
-    public created_at: Date;
 
     /**
      * Updated At
@@ -109,12 +111,12 @@ export abstract class CommonEntity extends BaseEntity {
     /**
      * Display Order
      */
-    @Column({
-        name: 'display_order',
-        type: 'decimal',
-        nullable: true,
-    })
-    public display_order: number;
+    // @Column({
+    //     name: 'display_order',
+    //     type: 'decimal',
+    //     nullable: true,
+    // })
+    // public display_order: number;
 
     /**
      * Code

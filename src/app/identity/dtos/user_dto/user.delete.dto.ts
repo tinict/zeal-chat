@@ -1,14 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { BaseDeleteDTO } from "src/dtos";
 
 /**
  * Delete
  */
-export class UserDeleteDTO {
-    /**
-     * id
-     */
-    @ApiProperty({
-        name: 'id',
-    })
-    id: string;
-};
+export class UserDeleteDTO extends BaseDeleteDTO {};

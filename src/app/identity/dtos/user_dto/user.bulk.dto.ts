@@ -1,6 +1,0 @@
-/**
- * Bulk
- */
-export class UserBulkDTO {
-
-};

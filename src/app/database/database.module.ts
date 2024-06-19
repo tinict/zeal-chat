@@ -14,7 +14,6 @@ import { TypeORMLogger } from './exceptions';
             database: 'db_dev',
             entities: [__dirname + '../../**/*.entity{.ts,.js}'],
             logging: true,
-            logger: new TypeORMLogger,
             synchronize: true,
         }),
     ],

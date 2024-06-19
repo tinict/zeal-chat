@@ -4,13 +4,11 @@ import { AppService } from './app.service';
 import {
   DatabaseModule,
   IdentityModule,
-  ZealchatModule
 } from './app';
 
 @Module({
   imports: [
     IdentityModule,
-    ZealchatModule,
     DatabaseModule,
   ],
   controllers: [AppController],

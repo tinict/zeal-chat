@@ -1,39 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { BasePutDTO } from "src/dtos";
 
 /**
  * Update
  */
-export class UserUpdateDTO {
-    @ApiProperty({
-        name: 'id',
-    })
-    id: string;
-    
-    @ApiProperty({
-        name: 'description',
-    })
-    description: string;
-
-    @ApiProperty({
-        name: 'created_by',
-    })
-    created_by: string;
-
-    @ApiProperty({
-        name: 'updated_by',
-    })
-    updated_by: string;
-
-    @ApiProperty({
-        name: 'deleted_by',
-    })
-    deleted_by: string;
-
-    @ApiProperty({
-        name: 'rec_status',
-    })
-    drec_status: string;
-
+export class UserUpdateDTO extends BasePutDTO {
     @ApiProperty({
         name: 'username',
     })

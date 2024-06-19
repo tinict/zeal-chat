@@ -1,10 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BaseCreateDTO } from "src/dtos";
+import { 
+    BasePostDTO 
+} from "src/dtos";
 
 /**
  * Create 
  */
-export class UserCreateDTO extends BaseCreateDTO {
+export class UserCreateDTO extends BasePostDTO {
     /**
      * Username
      */

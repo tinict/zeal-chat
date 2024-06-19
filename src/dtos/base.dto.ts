@@ -1,9 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 /**
- * Query
+ * Base DTO
  */
-export class UserQueryDTO {
+export abstract class BaseDTO {
+    /**
+     * id
+     */
     @ApiProperty({
         name: 'id',
     })

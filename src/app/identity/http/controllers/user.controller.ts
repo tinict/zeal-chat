@@ -8,12 +8,10 @@ import {
     Put,
     Query,
     Req,
-    Res,
     UsePipes,
 } from "@nestjs/common";
 import {
-    Request,
-    Response
+    Request
 } from 'express';
 import {
     UserService,
@@ -39,6 +37,9 @@ import {
     UserQueryDTO, 
     UserUpdateDTO
 } from "../../dtos/user_dto";
+import { 
+    BaseParamDTO 
+} from "src/dtos";
 
 @ApiTags('Identity')
 @ApiBearerAuth()
@@ -49,7 +50,7 @@ export class UserController {
     ) { };
 
     /**
-     * 
+     * Create new user in application
      * @param createUserDTO 
      * @param req 
      * @param res 
@@ -62,8 +63,6 @@ export class UserController {
         createUserDTO: UserCreateDTO,
         @Req()
         req: Request,
-        @Res()
-        res: Response,
     ) {
         try {
             const { credentials } = req.body;
@@ -74,14 +73,14 @@ export class UserController {
             });
             const user = await this.userService.create(userCreateDTOFilter, UserEntity);
 
-            return res.status(200).json({ user });
+            return user;
         } catch (error: any) {
-            return res.json(ExceptionFilterHelper.HttpException(error));
+            return ExceptionFilterHelper.HttpException(error);
         }
     };
 
     /**
-     * 
+     * Update user in application
      * @param updateUserDTO 
      * @param req 
      * @param res 
@@ -92,29 +91,31 @@ export class UserController {
     async updateUser(
         @Body()
         updateUserDTO: UserUpdateDTO,
+        @Param()
+        baseParam: BaseParamDTO,
         @Req()
         req: Request,
-        @Res()
-        res: Response,
     ) {
         try {
-            const { id, credentials } = req.body;
+            const { credentials } = req.body;
+            const id = baseParam.id;
 
-            const updateUserDTOFilter: UserCreateDTO = UserMapper.toUserCreateDTOMapper({
+            const updateUserDTOFilter: UserCreateDTO = UserMapper.toUserUpdateDTOMapper({
+                id,
                 ...updateUserDTO,
                 credentials
             });
             await this.userService.update(id, updateUserDTOFilter);
 
-            return res.json(ExceptionFilterHelper.Ok());
+            return ExceptionFilterHelper.Ok();
         } catch (error: any) {
             console.error();
-            return res.json(ExceptionFilterHelper.HttpException(error));
+            return ExceptionFilterHelper.HttpException(error);
         }
     };
 
     /**
-     * 
+     * Delete user in application
      * @param deleteUserDTO 
      * @param req 
      * @param res 
@@ -124,30 +125,29 @@ export class UserController {
     @UsePipes(new JoiValidationPipe(UserDeleteSchema))
     async deleteUser(
         @Param()
-        deleteUserDTO: UserDeleteDTO,
+        baseParam: BaseParamDTO,
         @Req()
         req: Request,
-        @Res()
-        res: Response,
     ) {
         try {
             const { credentials } = req.body;
+            const id = baseParam.id;
 
             const deleteUserDTOFilter: UserDeleteDTO = UserMapper.toUserDeleteDTOMapper({
-                ...deleteUserDTO,
+                id,
                 credentials
             });
 
-            await this.userService.delete(deleteUserDTOFilter.id);
+            await this.userService.delete(id);
 
-            return res.json(ExceptionFilterHelper.Ok());
+            return ExceptionFilterHelper.Ok();
         } catch (error: any) {
             return ExceptionFilterHelper.HttpException(error);
         }
     };
 
     /**
-     * 
+     * Find user in application
      * @param queryUserDTO 
      * @param req 
      * @param res 
@@ -160,8 +160,6 @@ export class UserController {
         queryUserDTO: UserQueryDTO,
         @Req()
         req: Request,
-        @Res()
-        res: Response,
     ) {
         try {
             const { credentials } = req.body;
@@ -175,7 +173,7 @@ export class UserController {
                 ...queryUserDTOFilter
             });
 
-            return res.status(200).json(users);
+            return users;
         } catch (error: any) {
             return ExceptionFilterHelper.HttpException(error);
         }

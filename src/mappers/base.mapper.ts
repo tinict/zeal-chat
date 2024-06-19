@@ -9,9 +9,6 @@ export class BaseMapper {
     static toBaseMapper = (entity: any) => ({
         description: _.get(entity, 'description'),
         display_order: parseFloat(_.get(entity, 'display_order')),
-        created_by: _.get(entity, 'created_by'),
-        updated_by: _.get(entity, 'updated_by'),
-        deleted_by: _.get(entity, 'delete_by'),
         rec_status: _.get(entity, 'rec_status'),
         code: _.get(entity, 'code'),
     });
@@ -23,10 +20,18 @@ export class BaseMapper {
      * @returns 
      */
     static toBaseCreateMapper = (entity: any) => ({
-        description: _.get(entity, 'description'),
+        ...this.toBaseMapper(entity),
         created_by: _.get(entity, 'created_by'),
-        rec_status: _.get(entity, 'rec_status'),
-        code: _.get(entity, 'code'),
+    });
+
+    /**
+     * 
+     * @param entity 
+     * @returns 
+     */
+    static toBaseDeleteMapper = (entity: any) => ({
+        ...this.toBaseMapper(entity),
+        deleted_by: _.get(entity, 'deleted_by'),
     });
 
     /**

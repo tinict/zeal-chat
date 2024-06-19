@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { RecStatus } from "src/constants";
 
-export abstract class BaseCreateDTO {
+export class BaseBulkDTO {    
     /**
      * Code
      */
@@ -14,7 +14,7 @@ export abstract class BaseCreateDTO {
      * Description
      */
     @ApiProperty({
-        name: 'description'
+        name: 'description',
     })
     description: string;
 
@@ -22,15 +22,10 @@ export abstract class BaseCreateDTO {
      * Record status
      */
     @ApiProperty({
-        name: 'rec_status'
+        name: 'rec_status',
+        type: 'enum',
+        enum: RecStatus,
+        default: RecStatus.ACTIVE
     })
     rec_status: RecStatus;
-
-    /**
-     * Created by
-     */
-    @ApiProperty({
-        name: 'created_by'
-    })
-    created_by: string;
 };

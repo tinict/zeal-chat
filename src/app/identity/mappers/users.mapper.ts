@@ -31,7 +31,7 @@ export class UserMapper extends BaseMapper {
      * @returns 
      */
     static toUserDeleteDTOMapper = (entity: any) => ({
-        ...BaseMapper.toBaseCreateMapper(entity),
+        ...BaseMapper.toBaseDeleteMapper(entity),
         id: _.get(entity, 'id'),
         credentials: _.get(entity, 'credentials'),
     });

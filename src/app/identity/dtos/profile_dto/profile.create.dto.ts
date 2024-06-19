@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Gender } from "src/constants";
-import { BaseCreateDTO } from "src/dtos";
+import { BasePostDTO } from "src/dtos";
 
-export class ProfileCreateDTO extends BaseCreateDTO {
+export class ProfileCreateDTO extends BasePostDTO {
     @ApiProperty({
         name: 'name',
         maxLength: 32,
